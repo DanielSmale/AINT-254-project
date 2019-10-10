@@ -34,7 +34,7 @@ public class BlockMovement : MonoBehaviour
 
             Destroy(blockHit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
 
-            blocks.Enqueue(Instantiate(block));
+            blocks.Enqueue(block);
 
 
         }
