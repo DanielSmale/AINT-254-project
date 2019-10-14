@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody rb;
     public float speed = 10.0f;
 
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -21,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("a"))
         {
-            rb.velocity = -transform.right * speed;
+            rb.velocity = -(transform.right * speed);
         }
 
         if (Input.GetKeyDown("d"))

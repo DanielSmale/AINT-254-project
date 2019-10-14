@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
 
     public float dampTime = 0.2f; // The time for the camera to refocus
-    public float screenEdgeBuffer = 4f; // Buffer so the targets are never at the edge of the screen
+    public float screenEdgeBuffer = 2f; // Buffer so the targets are never at the edge of the screen
     public float minSize; // The minimum size the camera fustrum can be
     public Transform[] targets; // All the targets the camera is looking at
 
