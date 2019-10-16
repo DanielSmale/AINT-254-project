@@ -15,22 +15,22 @@ public class PlayerMovement : MonoBehaviour
     
     void FixedUpdate()
     {
-        if (Input.GetKeyDown("w"))
+        if (Input.GetKey("w"))
         {
             rb.velocity = transform.forward * speed;
         }
 
-        if (Input.GetKeyDown("a"))
+        if (Input.GetKey("a"))
         {
             rb.velocity = -(transform.right * speed);
         }
 
-        if (Input.GetKeyDown("d"))
+        if (Input.GetKey("d"))
         {
             rb.velocity = transform.right * speed;
         }
 
-        if (Input.GetKeyDown("s"))
+        if (Input.GetKey("s"))
         {
             rb.velocity = -transform.forward * speed;
         }
