@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
-    public float speed = 10.0f;
+    public float speed = 30f;
 
 
     void Start()
@@ -17,22 +17,22 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("w"))
         {
-            rb.velocity = transform.forward * speed;
+            rb.AddForce(transform.forward * speed);
         }
 
         if (Input.GetKey("a"))
         {
-            rb.velocity = -(transform.right * speed);
+            rb.AddForce(-transform.right * speed);
         }
 
         if (Input.GetKey("d"))
         {
-            rb.velocity = transform.right * speed;
+            rb.AddForce(transform.right * speed);
         }
 
         if (Input.GetKey("s"))
         {
-            rb.velocity = -transform.forward * speed;
+            rb.AddForce(-transform.forward * speed);
         }
     }
 
