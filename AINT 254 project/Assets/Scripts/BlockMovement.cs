@@ -26,7 +26,10 @@ public class BlockMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            PlaceBlocks();
+            if (blocks.Count > 0)
+            {
+                PlaceBlocks();
+            }
         }
 
     }
@@ -39,14 +42,7 @@ public class BlockMovement : MonoBehaviour
         {
             Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
 
-          //  CustomObject newObject = new CustomObject();
-
-         //   newObject.na
             blocks.Enqueue(newBlock);
-
-            int purp = 1;
-
-
         }
 
     }
@@ -59,21 +55,21 @@ public class BlockMovement : MonoBehaviour
 
         blockToPlace = blocks.Dequeue();
 
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 1000.0f, layerMask))
+        if (Physics.Raycast(ray, out hit, 1000.0f) )
         {
             //Generate new block
-            Vector3 blockPos = hit.point + hit.normal/2.0f;
+            Vector3 blockPos = hit.point + hit.normal / 2.0f;
 
             blockPos.x = (float)Math.Round(blockPos.x, MidpointRounding.AwayFromZero); // Round the blocks position to the nearest whole number placing it in a more uniform fashion
-            blockPos.y = (float)Math.Round(blockPos.y, MidpointRounding.AwayFromZero);
+            blockPos.y = -1;                                                           // But force the blocks y to be -1 as the player has no jump
             blockPos.z = (float)Math.Round(blockPos.z, MidpointRounding.AwayFromZero);
 
 
-            Instantiate(newBlock, blockPos, Quaternion.identity);
+            Instantiate(blockToPlace, blockPos, Quaternion.identity);
 
-            int purp = 1;
 
         }
 
