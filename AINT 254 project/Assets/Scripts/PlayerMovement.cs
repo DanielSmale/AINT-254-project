@@ -12,7 +12,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    
+
+
     void FixedUpdate()
     {
         if (Input.GetKey("w"))
