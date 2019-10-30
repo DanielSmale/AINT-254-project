@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
 
     bool gameHasEnded = false;
 
-    public float restartDelay = 10f;
+    float gameOverWait = 20f;
 
+    public GameObject gameOverUI;
 
     public void EndGame()
     {
@@ -17,7 +18,9 @@ public class GameManager : MonoBehaviour
 
             gameHasEnded = true;
             Debug.Log("Game Over");
-            Invoke("Restart", restartDelay);
+
+            gameOverUI.SetActive(true);
+
         }
     }
 
@@ -26,4 +29,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

@@ -15,11 +15,7 @@ public class PlayerDie : MonoBehaviour
             FindObjectOfType<GameManager>().EndGame();
             
         }
-        if (Input.GetButtonDown("r"))
-        {
-            FindObjectOfType<GameManager>().Restart();
-
-        }
+      
 
 
 
