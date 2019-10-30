@@ -8,15 +8,10 @@ public class BlockMovement : MonoBehaviour
 
     public GameObject newBlock;
     // public Queue<CustomObject> blocks = new Queue<CustomObject>();
-    public Queue<GameObject> blocks = new Queue<GameObject>();
-    public 
-
-
+    private Queue<GameObject> blocks = new Queue<GameObject>();
 
     // Bit shift the index of the layer (8) to get a bit mask
     int layerMask = 1 << 8;
-
-
 
 
     void Update()
