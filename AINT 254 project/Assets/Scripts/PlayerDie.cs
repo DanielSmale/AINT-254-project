@@ -10,7 +10,7 @@ public class PlayerDie : MonoBehaviour
 
     void Update()
     {
-        if (this.transform.position.y < -1)
+        if (this.transform.position.y < -10)
         {
             FindObjectOfType<GameManager>().EndGame();
             

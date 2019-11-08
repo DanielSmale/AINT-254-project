@@ -7,10 +7,6 @@ public class BasicCameraController : MonoBehaviour
 
     public Transform playerToRotateAround;
 
-    private void Start()
-    {
-        playerToRotateAround = GetComponentInParent<Transform>();
-    }
 
 
     void Update()

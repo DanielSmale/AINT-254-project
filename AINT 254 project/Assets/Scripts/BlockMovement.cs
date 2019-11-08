@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BlockMovement : MonoBehaviour
 {
     //Code referenced: https://www.youtube.com/watch?v=4pvuBl_PQKs&list=PLi-ukGVOag_1Ux4oXpm8CA_UH_VDl5tTV&index=2&t=0s
+
+
+    public Text numBlocksText;
 
     public GameObject newBlock;
     // public Queue<CustomObject> blocks = new Queue<CustomObject>();
@@ -16,6 +20,8 @@ public class BlockMovement : MonoBehaviour
 
     void Update()
     {
+        numBlocksText.text = blocks.Count.ToString();
+
         if (Input.GetMouseButtonDown(0))
         {
             PickUpBlocks();
@@ -48,15 +54,16 @@ public class BlockMovement : MonoBehaviour
     void PlaceBlocks()
     {
         GameObject blockToPlace;
-
-
-        blockToPlace = blocks.Dequeue();
+      
 
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 1000.0f) )
+        if (Physics.Raycast(ray, out hit, 1000.0f,layerMask))
         {
+            blockToPlace = blocks.Dequeue();
+
+
             //Generate new block
             Vector3 blockPos = hit.point + hit.normal / 2.0f;
 

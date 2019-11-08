@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     // Code referenced: https://learn.unity.com/tutorial/camera-control?projectId=5c5149c5edbc2a001fd5be95#5c7f8528edbc2a002053b398
 
 
+
     public float dampTime = 0.2f; // The time for the camera to refocus
     public float screenEdgeBuffer = 2f; // Buffer so the targets are never at the edge of the screen
     public float minSize; // The minimum size the camera fustrum can be
@@ -26,6 +27,7 @@ public class CameraController : MonoBehaviour
     {
         Move();
         Zoom();
+        Rotate();
     }
 
     private void Move()
@@ -36,6 +38,20 @@ public class CameraController : MonoBehaviour
 
     }
 
+    private void Rotate()
+    {
+        
+        if (Input.GetKey("e"))
+        {
+            Camera.main.transform.RotateAround(desiredPosition, Vector3.up, 50 * Time.deltaTime);
+        }
+        else if (Input.GetKey("q"))
+        {
+            Camera.main.transform.RotateAround(desiredPosition, Vector3.up, -50 * Time.deltaTime);
+
+        }
+    }
+
     private void FindAveragePosition() //Average of all target objects in the scene
     {
         Vector3 totalPos = new Vector3(); // The total position of all the targets
@@ -44,14 +60,6 @@ public class CameraController : MonoBehaviour
 
         for (int i = 0; i < targets.Length; i++)
         {
-            // *** May not need this code ***
-
-            //// If the target isn't active, go on to the next one.
-            //if (!m_Targets[i].gameObject.activeSelf)
-            //{
-            // continue;
-            //}   
-
             totalPos += targets[i].position;
             numTargets++;
         }
@@ -85,11 +93,6 @@ public class CameraController : MonoBehaviour
 
         for (int i = 0; i < targets.Length; i++)
         {
-            // *** May not need ***
-            //// ... and if they aren't active continue on to the next target.
-            //if (!m_Targets[i].gameObject.activeSelf)
-            //    continue;
-
             //find the position of the target in the camera's local space.
             Vector3 targetLocalpos = transform.InverseTransformPoint(targets[i].position);
 

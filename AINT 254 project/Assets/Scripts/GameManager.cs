@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 
     bool gameHasEnded = false;
 
-    float gameOverWait = 20f;
-
     public GameObject gameOverUI;
 
     public void EndGame()
@@ -17,7 +15,6 @@ public class GameManager : MonoBehaviour
         {
 
             gameHasEnded = true;
-            Debug.Log("Game Over");
 
             gameOverUI.SetActive(true);
 
