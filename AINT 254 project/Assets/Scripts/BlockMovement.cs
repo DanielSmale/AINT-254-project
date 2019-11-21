@@ -15,7 +15,7 @@ public class BlockMovement : MonoBehaviour
     public GameObject ice;
 
 
-    // public Queue<CustomObject> blocks = new Queue<CustomObject>();
+    Queue<GameObject> currentlyUsingBlocks = new Queue<GameObject>();
     private Queue<GameObject> stoneBlocks = new Queue<GameObject>();
     private Queue<GameObject> woodBlocks = new Queue<GameObject>();
     private Queue<GameObject> iceBlocks = new Queue<GameObject>();
@@ -27,7 +27,9 @@ public class BlockMovement : MonoBehaviour
 
     void Update()
     {
-        numBlocksText.text = stoneBlocks.Count.ToString();
+        SetCurrentBlockType();
+
+        numBlocksText.text = currentlyUsingBlocks.Count.ToString();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -36,7 +38,7 @@ public class BlockMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            if (stoneBlocks.Count > 0)
+            if (currentlyUsingBlocks.Count > 0)
             {
                 PlaceBlocks();
             }
@@ -53,7 +55,7 @@ public class BlockMovement : MonoBehaviour
             if (hit.collider.gameObject.tag == "Stone")
             {
                 Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
-                stoneBlocks.Enqueue(stone);
+                currentlyUsingBlocks.Enqueue(stone);
             }
 
             if (hit.collider.gameObject.tag == "Wood")
@@ -65,7 +67,7 @@ public class BlockMovement : MonoBehaviour
             if (hit.collider.gameObject.tag == "Ice")
             {
                 Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
-                woodBlocks.Enqueue(ice);
+                iceBlocks.Enqueue(ice);
             }
 
         }
@@ -75,20 +77,34 @@ public class BlockMovement : MonoBehaviour
     private void SetCurrentBlockType()
     {
 
-    }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentlyUsingBlocks = stoneBlocks;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentlyUsingBlocks = woodBlocks;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentlyUsingBlocks = iceBlocks;
+        }
+    }
 
     void PlaceBlocks()
     {
         GameObject blockToPlace;
-      
+
 
 
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out hit, 1000.0f,layerMask))
+        if (Physics.Raycast(ray, out hit, 1000.0f, layerMask))
         {
-            blockToPlace = stoneBlocks.Dequeue();
+            blockToPlace = currentlyUsingBlocks.Dequeue();
 
 
             //Generate new block
@@ -105,6 +121,5 @@ public class BlockMovement : MonoBehaviour
         }
 
     }
+
 }
-
-
