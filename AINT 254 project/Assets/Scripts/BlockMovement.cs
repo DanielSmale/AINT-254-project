@@ -10,9 +10,16 @@ public class BlockMovement : MonoBehaviour
 
     public Text numBlocksText;
 
-    public GameObject newBlock;
+    public GameObject stone;
+    public GameObject wood;
+    public GameObject ice;
+
+
     // public Queue<CustomObject> blocks = new Queue<CustomObject>();
-    private Queue<GameObject> blocks = new Queue<GameObject>();
+    private Queue<GameObject> stoneBlocks = new Queue<GameObject>();
+    private Queue<GameObject> woodBlocks = new Queue<GameObject>();
+    private Queue<GameObject> iceBlocks = new Queue<GameObject>();
+
 
     // Bit shift the index of the layer (8) to get a bit mask
     int layerMask = 1 << 8;
@@ -20,7 +27,7 @@ public class BlockMovement : MonoBehaviour
 
     void Update()
     {
-        numBlocksText.text = blocks.Count.ToString();
+        numBlocksText.text = stoneBlocks.Count.ToString();
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -29,7 +36,7 @@ public class BlockMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            if (blocks.Count > 0)
+            if (stoneBlocks.Count > 0)
             {
                 PlaceBlocks();
             }
@@ -43,10 +50,30 @@ public class BlockMovement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 1000.0f, layerMask))
         {
-            Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
+            if (hit.collider.gameObject.tag == "Stone")
+            {
+                Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
+                stoneBlocks.Enqueue(stone);
+            }
 
-            blocks.Enqueue(newBlock);
+            if (hit.collider.gameObject.tag == "Wood")
+            {
+                Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
+                woodBlocks.Enqueue(wood);
+            }
+
+            if (hit.collider.gameObject.tag == "Ice")
+            {
+                Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
+                woodBlocks.Enqueue(ice);
+            }
+
         }
+
+    }
+
+    private void SetCurrentBlockType()
+    {
 
     }
 
@@ -61,7 +88,7 @@ public class BlockMovement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 1000.0f,layerMask))
         {
-            blockToPlace = blocks.Dequeue();
+            blockToPlace = stoneBlocks.Dequeue();
 
 
             //Generate new block

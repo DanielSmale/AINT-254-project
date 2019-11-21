@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class IceBlock : MonoBehaviour
 {
-    public Rigidbody blockRB;
-    public float meltTime = 120;
+    Rigidbody blockRB;
+
+    [SerializeField]
+    private float meltTime = 10;
+
+    public bool touching;
     bool nearFire = false; //Adds a multiplier on the melt time making it melt faster if near fire
 
 
     private void Start()
     {
+        blockRB = GetComponent<Rigidbody>();
+
+        touching = false;
         blockRB.useGravity = false;
         blockRB.isKinematic = true;
     }
 
     private void Update()
     {
-        meltTime -= Time.deltaTime;
+        if (touching == true)
+        {
+            meltTime -= Time.deltaTime;
+        }
 
         if (meltTime <= 0)
         {
@@ -28,6 +38,13 @@ public class IceBlock : MonoBehaviour
         {
             meltTime -= Time.deltaTime * 2;
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        touching = true;
+
+
     }
 
     private void Melt()

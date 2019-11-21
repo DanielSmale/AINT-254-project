@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4869847340045021223}
   - component: {fileID: 4869847340045021220}
   m_Layer: 8
-  m_Name: StoneBlock
-  m_TagString: Stone
+  m_Name: Granite
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3587b4fb66d2f424e85ba6b54f705346, type: 2}
+  - {fileID: 2100000, guid: cc31e8586f2332b449c6f7dc473cf30a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
