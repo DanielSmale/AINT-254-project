@@ -4246,6 +4246,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4869847340045021218, guid: c3955534448faeb48b0a7fb783491a96,
         type: 3}
+    - target: {fileID: 7070387524477164007, guid: 444b53d996bceb14693470be02e27571,
+        type: 3}
+      propertyPath: wood
+      value: 
+      objectReference: {fileID: 1115721285858501625, guid: dddbf6983646d664c987948930cc9f38,
+        type: 3}
+    - target: {fileID: 7070387524477164007, guid: 444b53d996bceb14693470be02e27571,
+        type: 3}
+      propertyPath: ice
+      value: 
+      objectReference: {fileID: 6499845880981822025, guid: 486f10e5d82415847af846f544821144,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 444b53d996bceb14693470be02e27571, type: 3}
 --- !u!1001 &2094439503
@@ -4340,11 +4352,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 1038062343701120662, guid: 357aa3f6fd16d5c4da13a9cb1238023d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7125483599663891609, guid: 357aa3f6fd16d5c4da13a9cb1238023d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4419,6 +4426,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: BackToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038062343701120662, guid: 357aa3f6fd16d5c4da13a9cb1238023d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1038062343835436491, guid: 357aa3f6fd16d5c4da13a9cb1238023d,
         type: 3}

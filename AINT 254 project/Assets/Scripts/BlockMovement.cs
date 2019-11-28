@@ -55,7 +55,7 @@ public class BlockMovement : MonoBehaviour
             if (hit.collider.gameObject.tag == "Stone")
             {
                 Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
-                currentlyUsingBlocks.Enqueue(stone);
+                stoneBlocks.Enqueue(stone);
             }
 
             if (hit.collider.gameObject.tag == "Wood")
