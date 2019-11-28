@@ -24,6 +24,20 @@ public class BlockMovement : MonoBehaviour
     // Bit shift the index of the layer (8) to get a bit mask
     int layerMask = 1 << 8;
 
+    private GameObject[] stoneObjectPool;
+    private GameObject[] woodObjectPool;
+    private GameObject[] iceObjectPool;
+
+
+
+    private void Start()
+    {
+        currentlyUsingBlocks = stoneBlocks; // By default we play with the stone blocks
+
+        stoneObjectPool = new GameObject[30];
+        woodObjectPool = new GameObject[30];
+        iceObjectPool = new GameObject[30];
+    }
 
     void Update()
     {
@@ -54,7 +68,7 @@ public class BlockMovement : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Stone")
             {
-                Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
+                               
                 stoneBlocks.Enqueue(stone);
             }
 
@@ -76,8 +90,7 @@ public class BlockMovement : MonoBehaviour
 
     private void SetCurrentBlockType()
     {
-
-
+        
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             currentlyUsingBlocks = stoneBlocks;
