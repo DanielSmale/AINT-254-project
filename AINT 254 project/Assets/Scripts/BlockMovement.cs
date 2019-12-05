@@ -10,9 +10,14 @@ public class BlockMovement : MonoBehaviour
 
     public Text numBlocksText;
 
-    public GameObject stone;
-    public GameObject wood;
-    public GameObject ice;
+    [SerializeField]
+    private GameObject stone;
+
+    [SerializeField]
+    private GameObject wood;
+
+    [SerializeField]
+    private GameObject ice;
 
 
     Queue<GameObject> currentlyUsingBlocks = new Queue<GameObject>();
@@ -23,6 +28,10 @@ public class BlockMovement : MonoBehaviour
 
     // Bit shift the index of the layer (8) to get a bit mask
     int layerMask = 1 << 8;
+
+    [SerializeField]
+    private FollowPlayer followPlayer;
+
 
     private GameObject[] stoneObjectPool;
     private GameObject[] woodObjectPool;
@@ -68,7 +77,7 @@ public class BlockMovement : MonoBehaviour
         {
             if (hit.collider.gameObject.tag == "Stone")
             {
-                               
+                Destroy(hit.collider.gameObject); // Destroy the block from the world and instiatiate a new block ready to be placed
                 stoneBlocks.Enqueue(stone);
             }
 
@@ -113,6 +122,7 @@ public class BlockMovement : MonoBehaviour
 
 
 
+
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, 1000.0f, layerMask))
@@ -132,6 +142,9 @@ public class BlockMovement : MonoBehaviour
 
 
         }
+
+        followPlayer.UpdateWalkableArea();
+ 
 
     }
 

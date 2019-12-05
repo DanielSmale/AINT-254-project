@@ -13,11 +13,8 @@ public class GoalTrigger : MonoBehaviour
 
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
         
-        if(SceneManager.sceneCount < SceneManager.GetActiveScene().buildIndex)
-        {
-            SceneManager.LoadScene("MainMenu");
-        }
     }
 
 }
